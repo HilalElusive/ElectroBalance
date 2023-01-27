@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>ElectroBalance - Admin Panel</title>
+<link th:href="@{/css/style.css}" rel="stylesheet">
+</head>
+<style>
+.header{
+    background-color: #8bc47c;
+}
+.btn_login{
+
+    background-color: #8bc47c;
+}
+</style>
+<body>
+<div class="container">
+        <form th:action="@{/admin/login}" method="post">
+            <div class="header">
+            <a th:href="@{/}">
+                <img th:src="@{/img/icon/admin2.png}" alt="admin_icon">
+                <h2>Authentification</h2>
+            </a>
+            </div>
+            <div th:if="${param.error}" style="color: red;padding-top:5px;">
+        		[[${session.SPRING_SECURITY_LAST_EXCEPTION.message}]]
+        	</div>
+            <div class="label">Login</div>
+            <div class="forum_input">
+                <input type="text" name = "username" class="virtual-keyboard" data-kioskboard-type="keyboard"  required>
+            </div>
+            <div class="label">Mot de passe</div>
+            <div class="forum_input">
+                <input type="password" name = "password" class="virtual-keyboard" data-kioskboard-type="keyboard"  required>
+            </div>
+           
+            <input type="submit" name = "submit" value="Connexion" class = "btn_login">
+        </form>
+        
+    </div>
+    <script type="module" th:src="@{/js/kioskboard/keyscript.js}"></script>
+</body>
+</html>

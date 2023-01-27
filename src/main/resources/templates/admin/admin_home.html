@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+    xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+
+<head th:insert="/fragments/head"></head>
+
+<style>
+#panel {
+	position: absolute;
+	top:0;
+	right:0;
+	width: 55%;
+	height: 100%;
+}
+.containerM{
+    background-color: #eee;
+}
+.welcomingSection{
+	position: absolute;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	width: 45%;
+	height: 100%;
+	text-align: center;
+	background-image: url('/img/flower.png');
+    background-size: cover;
+}
+.welcomingSection img{
+	width: 130px;
+	height: 130px;
+	margin-top: 11rem;
+}
+.welcome{
+	margin: 0 auto;
+	margin-top: 0.25em;
+}
+.userName{
+	text-transform: uppercase;
+	    margin-top: 1.27em;
+	letter-spacing: 0.3rem;
+			 color:steelblue;
+}
+</style>
+
+<body>
+
+	<div th:replace="/fragments/header"></div>
+	<img id="panel" th:src="@{/img/admin-panel.png}" alt="panel" >
+	
+	<div class="welcomingSection">
+		<img th:src="@{/img/icon/welcome.png}" alt="welcome" >
+		<h3 class="welcome">BIENVENUE!</h3>
+		<h1 class="userName" sec:authentication="name"></h1>
+		<h2 sec:authentication="principal.authorities"></h2>
+	</div>
+	
+	
+	<div th:replace="/fragments/footer"></div>
+
+</body>
+</html>

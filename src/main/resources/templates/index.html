@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ElectroBalance</title>   
+    <link rel="stylesheet" th:href="@{/css/styleIndex.css}"> 
+</head>
+
+<body>
+    <div class="container">
+        <div class="title">
+            <h1>Sélectionner Votre rôle</h1>
+            <h3>Nous garantissons votre autorité pour votre sécurite</h3>
+        </div>
+        <div class="cardContainer">
+            <div class="card card1">
+                <div class="circle uno"></div>
+                <div class= "num fr"><p>1</p></div>
+                <div class="admin re"><a th:href="@{/admin/home}">Admin Panel</a> </div>
+            </div>
+            <div class="card card2">
+                <div class="circle deus"></div>
+                <div class= "num"><p>2</p></div>
+                <div class="admin"><a th:href="@{/user/login}">User Panel</a></div>
+            </div>
+        </div>
+        
+    </div>
+</body>
+</html>

@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+    xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+
+<head th:insert="/fragments/head"></head>
+<body>
+
+ <div th:replace="/fragments/headerUser"></div>
+
+<script>modify1();</script>
+<div class="entete">
+    <div class="poids">
+        <h2 id="poids">Poids 0.000 KG</h2>
+    </div>
+    <div class="prix_unit">
+        <h2 id="prix">Prix/KG 0.00 MAD</h2>
+    </div>
+    <div class="montant">
+        <h2 id="montant">A Payer 0.00 MAD</h2>
+    </div>
+</div>
+<div class="superpose">
+    <div class="suggestionPart">
+        <div class="snapbutton">
+            <button class="btn btn-primary" id="snap" onclick="valideJob2()">S T A R T</button>
+            <button class="btn btn-primary" id="valider" onclick="valideJob2()" display="none">VALIDER</button>
+        </div>
+        <div class="shownone">
+            <div class="imageChart">
+                <img th:src="@{/img/chart.jpg}" alt="empty chart">
+            </div>
+            <div class="info">
+                <h4>( La liste est vide ! )</h4>
+                <h1>Veuillez commencer une nouvelle commande</h1>
+            </div>
+        </div>
+        <div class="vidclass">
+            <div id="video"></div>
+        </div>
+        <div class='titleSuggest'>
+            <div class="titleSug">
+                <h2 onclick="changeContent(1)">Produits populaires</h2>
+            </div>
+            <div class="viewall" onclick="changeContent(0)">
+                <img th:src="@{/img/icon/view-all.png}" alt="">
+                <h1>Voir tout</h1>
+            </div>
+        </div>
+
+        <div class="topSelectorSugg">
+	        <div class="SecondmodifierSugg" onclick="changeContentSugg(0)">
+		        <button class="buttonMenu2Sugg" ><a href="#" >FRUIT</a></button>
+	        </div>
+	        <div class="SecondmodifierSugg" onclick="changeContentSugg(1)">
+		        <button class="buttonMenu2Sugg" ><a href="#" >LEGUME</a></button>
+	        </div>
+	        <div class="SecondmodifierSugg" onclick="changeContentSugg(2)">
+		        <button class="buttonMenu2Sugg" ><a href="#" >VRAC</a></button>
+	        </div>
+        </div>
+
+        <div class="gridViewContainer" >
+        
+
+        </div>
+    </div>    
+</div>
+
+
+<div th:replace="/fragments/footer"></div>
+<div id="heh" style="display : none">qrcode</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+<script th:src="@{/js/scriptQr.js}"></script>
+
+</body>
+</html>

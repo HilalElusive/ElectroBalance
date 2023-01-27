@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head th:fragment="header_head">
+
+	<meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link th:href="@{/css/styleAcc.css}" rel="stylesheet">
+
+</head>
+
+
+<body>
+	<div th:fragment="header">
+	
+		<div class="header">
+        <img src="assets/img/icon/logout.png" alt="logout" onclick="logout()">
+    	</div>
+    <div class="mainContainer">
+        <div class="Sidecontainer">
+            <div class="titre">
+                <h1>Options</h1>
+            </div>
+            <div class="sections">
+                <button class="buttonMenu" onclick="StyleChanger1()"><a href="#" id ="aSelected1">Nouvelle facture</a></button>
+                <button class="buttonMenu" onclick="StyleChanger2()"><a href="#" id ="aSelected2">Transactions</a></button>
+                <button class="buttonMenu" onclick="StyleChanger3()"><a href="#" id ="aSelected3">Produits</a></button>
+            </div>
+            
+        </div>
+        
+        <div class="containerM">
+        </div>
+		</div>
+	</div>
+	
+</body>
+
+</html>

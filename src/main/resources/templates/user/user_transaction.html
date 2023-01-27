@@ -1,0 +1,50 @@
+<script>modify2();</script>
+<script>
+	function generateSpecPdf(id){
+		fetch('/export/pdf/'+id, {
+	  		method: 'GET',
+		})
+		.then(res => res.json())
+		.then((data) => {
+			printJS({
+			    printable: data.url,
+			    type: 'pdf',
+			    base64: true
+			  });
+		})
+		.catch((error) => {
+	  		console.error('Error:', error);
+		});
+	}
+</script>
+
+<div class="contain">
+    <div class="title">
+        <h2>Table de transaction</h2>
+    </div>
+    <div class="tableTrans">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th scope="col">ID facture</th>
+                    <th scope="col">Date</th>
+                    <th scope="col">Heure</th>
+                    <th scope="col">Produit</th>
+                    <th scope="col">Montant/Dhs</th>
+                    <th scope="col">Facture</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="facture : ${factures}">
+                	<th scope='row' th:text="${facture.getId()}"></th>
+                    <td th:text="${facture.getDate()}"></td>
+                    <td th:text="${facture.getTime()}"></td>
+                    <td th:text="${facture.getProduit().getNom()}"></td>
+                    <td th:text="${facture.getMontant()}"></td>
+                    <td><a href="#" class='btn btn-primary' th:attr="onclick=|generateSpecPdf(${facture.getId()})|" >Generer la facture</a></td>
+               </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+

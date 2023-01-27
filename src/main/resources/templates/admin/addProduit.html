@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+    xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+
+<head th:insert="/fragments/head"></head>
+
+<body>
+
+	<div th:replace="/fragments/header"></div>
+	<script>modify3Admin();</script>
+<script>
+(function()
+{
+  if( window.localStorage )
+  {
+    if( !localStorage.getItem('firstLoad') )
+    {
+      localStorage['firstLoad'] = true;
+      window.location.reload();
+    }  
+    else
+      localStorage.removeItem('firstLoad');
+  }
+})();
+</script>
+<div class="container">
+        <div class="title">
+            <h2>Fiche produit</h2>
+            <hr>
+            <br>
+        </div>
+    <form th:action="@{/admin/AddProduct}" th:object="${produit}" method = "POST" enctype="multipart/form-data">
+        <div class="row">
+      <div class="col-25">
+        <label for="fname">Nom</label>
+      </div>
+      <div class="col-75">
+        <input type="text" id="nom" name="nom" th:field="*{nom}" placeholder="Saisir le nom du produit.." required>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-25">
+        <label for="lname">Prix en dhs/KG</label>
+      </div>
+      <div class="col-75">
+        <input type="text" id="prix" name="prix" th:field="*{prix_unit_kg}" placeholder="Saisir votre prix.." class='virtual-keyboard' data-kioskboard-type='numpad' data-kioskboard-specialcharacters='true' required >
+        <img th:src="@{/img/icon/comma.png}" alt="" style="height:40px;width:28px" onclick="addComma()">
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-25">
+        <label for="subject">Description</label>
+      </div>
+      <div class="col-75">
+        <textarea id="description" name="description" th:field="*{description}" placeholder="Saisir une description convenable a votre produit.." style="height:100px" class="virtual-keyboard" data-kioskboard-type="true" data-kioskboard-specialcharacters="true" required ></textarea>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-25">
+        <label for="subject">Type</label>
+      </div>
+      <div class="col-75">
+        <input list="types" name="type" id="type" th:field="*{type}">
+          <datalist id="types">
+            <option value="FRUIT">
+            <option value="LEGUME">
+            <option value="VRAC">
+          </datalist>
+      </div>
+    </div>
+    <hr>
+    <br>
+    <div class="row">
+      <div class="col-25">
+        <label for="subject">Selectionner l'image du produit:</label>
+      </div>
+      <div class="col-75">
+      <input type="file" name="fileToUpload" id="fileToUpload" >
+      </div>
+    </div>
+        <input type="submit" name = "submit" value="Soumettre" >
+    </form>
+    </div>
+    
+    <script type="module" th:src="@{/js/kioskboard/keyscript.js}"></script>

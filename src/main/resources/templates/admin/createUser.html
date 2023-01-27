@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+    xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+
+<head th:insert="/fragments/head"></head>
+
+<body>
+
+	<div th:replace="/fragments/header"></div>
+	<script>modify1Admin();</script>
+<script>
+(function()
+{
+  if( window.localStorage )
+  {
+    if( !localStorage.getItem('firstLoad') )
+    {
+      localStorage['firstLoad'] = true;
+      window.location.reload();
+    }  
+    else
+      localStorage.removeItem('firstLoad');
+  }
+})();
+</script>
+<div class="container">
+        <div class="title">
+            <h2>Creation d'un Utilisateur</h2>
+            <hr>
+            <br>
+        </div>
+    <form th:action="@{/admin/AddUser}" th:object="${user}" method = "POST">
+        <div class="row">
+      <div class="col-25">
+        <label for="fname">Username</label>
+      </div>
+      <div class="col-75">
+        <input type="text" id="username" name="username" th:field="*{userName}" placeholder="Saisir le nom d'utilisateur.." required>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-25">
+        <label for="lname">Password</label>
+      </div>
+      <div class="col-75">
+        <input type="password" id="prix" name="prix" th:field="*{password}" placeholder="Saisir votre mot de pass.." required >
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-25">
+        <label for="subject">Role</label>
+      </div>
+      <div class="col-75">
+        <input list="types" name="type" id="type" th:field="*{role}">
+          <datalist id="types">
+            <option value="USER">
+            <option value="ADMIN">
+          </datalist>
+      </div>
+    </div>
+    <br>
+    <br><br><br>
+    <hr>
+    <br>
+        <input type="submit" name = "submit" value="Soumettre" >
+    </form>
+    </div>

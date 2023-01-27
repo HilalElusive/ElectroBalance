@@ -1,0 +1,65 @@
+
+	
+<div class='container'>
+    <div class='titleUP'>
+        <h2>Edition d'utilisateur</h2>
+        
+        <br>
+    </div>
+    <div class='containerUP'>
+        <div class='PicProduct'>
+            <h2>Apercu d'image</h2>
+            <br>
+            <hr>
+            <img th:src="@{/img/balance.png}">
+            <br>
+            <hr>
+            <br>
+            
+        </div>
+        <div class='InfoProduct'>
+            <h2>Edition des infos</h2>
+            <form method = 'POST' th:action="@{${'/admin/user/'+user.getId()}}" th:object="${user}" >
+        <div class="row">
+      <div class="col-25">
+        <label for="fname">Username</label>
+      </div>
+      <div class="col-75">
+        <input type="text" id="username" name="username" th:attr="value=${user.getUserName()}" th:field="*{userName}" placeholder="Saisir le nom d'utilisateur.." required>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-25">
+        <label for="lname">Password</label>
+      </div>
+      <div class="col-75">
+        <input type="password" id="prix" name="prix" th:field="*{password}" placeholder="Saisir votre mot de passe.." required >
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-25">
+        <label for="subject">Role</label>
+      </div>
+      <div class="col-75">
+        <input list="types" name="type" id="type" th:attr="value=${user.getRole()}" th:field="*{role}">
+          <datalist id="types">
+            <option value="USER">
+            <option value="ADMIN">
+          </datalist>
+          <img th:src="@{/img/icon/cancel.png}" onclick='clearValue()'>
+      </div>
+    </div>
+   
+    <br>
+    <input type='submit' name = 'submitt' value='Modifier' >
+    </form>
+        </div>
+    </div>
+    </div>
+    
+    <script>
+    function clearValue(){
+    	document.getElementById("type").value = "";
+    }
+	</script>
+

@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+    xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+
+<head th:insert="/fragments/head"></head>
+
+<body>
+
+	<div th:replace="/fragments/header"></div>
+
+
+<script>modify3Admin();</script>
+<script>
+(function()
+{
+  if( window.localStorage )
+  {
+    if( !localStorage.getItem('firstLoad') )
+    {
+      localStorage['firstLoad'] = true;
+      window.location.reload();
+    }  
+    else
+      localStorage.removeItem('firstLoad');
+  }
+})();
+</script>
+<div class="topModifier">
+    <div class="modifier" >
+        <h3>+   AJOUT</h3>
+        <a th:href="@{/admin/AddProduct}" ><img th:src="@{/img/icon/addproduct.png}" alt="add" > </a>
+    </div>
+    <div class="modifier" onclick="location.reload()">
+        <h3>RELOAD</h3>
+        <img th:src="@{/img/icon/reload.png}" alt="reload"  > 
+    </div>
+</div>
+<div class="topSelector">
+	<div class="Secondmodifier" onclick="changeContent(2)">
+		<button class="buttonMenu2" ><a href="#" >FRUIT</a></button>
+	</div>
+	<div class="Secondmodifier" onclick="changeContent(3)">
+		<button class="buttonMenu2" ><a href="#" >LEGUME</a></button>
+	</div>
+	<div class="Secondmodifier" onclick="changeContent(4)">
+		<button class="buttonMenu2" ><a href="#" >VRAC</a></button>
+	</div>
+</div>
+
+<div  class="gridContainer">
+	<th:block th:each="product : ${produits}">
+	<div  class='gridViewItem'>
+		<span  role='link' tabindex='0'>
+		<img th:src="@{${product.getImg_url()}}" />
+		<div class="gridViewInfo">
+			<div class = 'nameInfo'>  
+				<div th:text="${product.getNom()}">
+			</div> 
+			<div class = 'descrInfo'> 
+				<marquee direction='left' th:text="${product.getDescription()}">  </marquee>
+			</div>
+			<div class = 'DeleteProd'>
+					<div th:text="${product.getPrix_unit_kg()+' dhs/KG'}" th:remove="tag"></div> | <img th:src="@{/img/icon/trash-bin.png}" alt='delete' th:attr="onclick=|deleteProduct(${product.getId()})|"  > | <img th:src="@{/img/icon/editer.png}" alt='update' th:attr="onclick=|updateProduct(${product.getId()})|"  >
+			</div>
+			</div>
+		</div>
+		</span>
+	</div>
+	</th:block>
+</div>
+
+
+<div th:replace="/fragments/footer"></div>
+
+</body>
+</html>

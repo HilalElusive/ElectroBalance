@@ -1,0 +1,90 @@
+
+	
+<div class='container'>
+    <div class='titleUP'>
+        <h2>Edition du produit</h2>
+        
+        <br>
+    </div>
+    <div class='containerUP'>
+        <div class='PicProduct'>
+            <h2>Apercu d'image</h2>
+            <img th:src="@{${produit.getImg_url()}}">
+            <br>
+            <hr>
+            <br>
+            <form method = 'POST' th:action="@{${'/admin/product_img/'+produit.getId()}}" enctype='multipart/form-data'>
+            <div class='input-file-container'>  
+            <input class='input-file' name='fileToUpload' id='fileToUpload' type='file' accept='image/png, image/jpeg' required>
+            <label tabindex='0' for='fileToUpload' class='input-file-trigger'>Selectionner l'image du produit...</label>
+          </div>
+          <p class='file-return'></p>
+            <div class='row'>
+            <div class='col-25'>
+              
+            </div>
+                <div class='col-25'>
+                  <input type='submit' name = 'submiting' value='Telecharger nouvelle Image' id='btn-uploadImg'>
+                </div>
+            </div>
+            </form>
+        </div>
+        <div class='InfoProduct'>
+            <h2>Edition du produit</h2>
+            <form method = 'POST' th:action="@{${'/admin/product_info/'+produit.getId()}}" th:object="${produit}" enctype='multipart/form-data'>
+        <div class='row'>
+      <div class='col-25'>
+        <label for='fname'>Nom</label>
+      </div>
+      <div class='col-75'>
+        <input type='text' id='nom' name='nom' placeholder='Saisir le nom du produit..' th:attr="value=${produit.getNom()}" th:field="*{nom}" required>
+      </div>
+    </div>
+    <div class='row'>
+      <div class='col-25'>
+        <label for='lname'>Prix en dhs/KG</label>
+      </div>
+      <div class='col-75'>
+        <input type='text' id='prix' name='prix' placeholder='Saisir votre prix..' th:attr="value=${produit.getPrix_unit_kg()}" th:field="*{prix_unit_kg}" class='virtual-keyboard' data-kioskboard-type='numpad' data-kioskboard-specialcharacters='true' required >
+        <img th:src="@{/img/icon/comma.png}" alt='' style='height:40px;width:28px' onclick='addComma()'>
+      </div>
+    </div>
+    <div class='row'>
+      <div class='col-25'>
+        <label for='subject'>Description</label>
+      </div>
+      <div class='col-75'>
+        <textarea id='description' name='description' th:field="*{description}" placeholder='Saisir une description convenable a votre produit..' style='height:100px' th:text="${produit.getDescription()}" required ></textarea>
+      </div>
+    </div>
+    <div class='row'>
+      <div class='col-25'>
+        <label for='subject'>Type</label>
+      </div>
+      <div class='col-75'>
+        <input list='types' th:attr="value=${produit.getType()}" name='type' id='type' th:field="*{type}">
+          <datalist id='types'>
+            <option value='FRUIT'>
+            <option value='LEGUME'>
+            <option value='VRAC'>
+          </datalist>
+          <img th:src="@{/img/icon/cancel.png}" onclick='clearValue()'>
+      </div>
+    </div>
+   
+    <br>
+    <input type='submit' name = 'submitt' value='Modifier' >
+    </form>
+        </div>
+    </div>
+    </div>
+    
+    <script type="module" th:src="@{/js/kioskboard/keyscript.js}"></script>
+    
+    <script>
+    function clearValue(){
+    	document.getElementById("type").value = "";
+    }
+	</script>
+	
+

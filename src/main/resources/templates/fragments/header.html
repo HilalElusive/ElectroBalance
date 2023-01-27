@@ -1,0 +1,29 @@
+<style>
+.buttonMenu{
+    background-color: #F5F0BB;
+}
+.titre{
+    background-color: #C4DFAA;
+}
+</style>
+
+<div class="header">
+		<form name="logoutForm" th:hidden="true" method="post" th:action="@{/admin/logout}">
+    		<input type="submit" value="Logout" />
+		</form>
+		<a href="javascript: logoutForm.submit();"><img th:src="@{/img/icon/logout.png}" alt="logout"></a>
+</div>
+    <div class="mainContainer">
+        <div class="Sidecontainer">
+            <div class="titre">
+                <h1>Options</h1>
+            </div>
+            <div class="sections">
+                <button class="buttonMenuAdmin" onclick="StyleChanger1Admin()"><a th:href="@{/admin/viewUser}" id ="aSelected1">Utilisateurs</a></button>
+                <button class="buttonMenuAdmin" onclick="StyleChanger2Admin()"><a onclick="openPage('/admin/transaction')" id ="aSelected2">Transactions</a></button>
+                <button class="buttonMenuAdmin" onclick="StyleChanger3Admin()"><a th:href="@{/admin/product}" id ="aSelected3">Produits</a></button>
+            </div>
+            
+        </div>
+        
+        <div class="containerM">

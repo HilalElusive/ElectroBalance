@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+    xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+
+<head th:insert="/fragments/head"></head>
+
+<body>
+
+	<div th:replace="/fragments/header"></div>
+	
+<script>modify1Admin();</script>
+<div class="entete">
+    <div class="poids">
+    	<h2>Utilisateur Disponible</h2>
+    </div>
+</div>
+<div class="topModifier">
+    <div class="modifier" >
+        <h4>+   AJOUT</h4>
+        <a th:href="@{/admin/createUser}" ><img th:src="@{/img/product/manager.png}" alt="add" > </a>
+    </div>
+    <div class="modifier" onclick="location.reload()">
+        <h4>RELOAD</h4>
+        <img th:src="@{/img/icon/reload.png}" alt="reload"  > 
+    </div>
+</div>
+<div  class="gridContainer">
+	<th:block th:each="user : ${users}">
+	<div  class='gridViewItem'>
+		<span  role='link' tabindex='0'>
+		<img th:src="@{/img/balance.png}" alt="reload"  >
+		<div class="gridViewInfo">
+			<div class = 'nameInfo'>  
+				<div th:text="${user.getUserName()}">
+			</div> 
+			<div class = 'DeleteProd'>
+					<input type="checkbox" data-toggle="switchbutton" th:checked="${user.getActive()}" data-onlabel="enable" data-offlabel="disable" data-onstyle="success" data-offstyle="danger" th:attr="data-id=${user.getId()}" th:onchange="'changeStatus(this)'"> | <img th:src="@{/img/icon/trash-bin.png}" alt='delete' th:attr="onclick=|deleteUser(${user.getId()})|"  > | <img th:src="@{/img/icon/editer.png}" alt='update' th:attr="onclick=|updateUser(${user.getId()})|"  >
+			</div>
+			</div>
+		</div>
+		</span>
+	</div>
+	</th:block>
+</div>
+
+<div th:replace="/fragments/footer"></div>
+
+</body>
+</html>

@@ -1,0 +1,19 @@
+<th:block th:each="product : ${produits}">
+	<div  class='gridViewItem clickable' id="bar" th:attr="onclick=|process('${factId}','${product.getId()}')|" >
+		<span  role='link' tabindex='0'>
+		<img th:src="@{${product.getImg_url()}}" />
+		<div class="gridViewInfo">
+			<div class = 'nameInfo'>  
+				<div th:text="${product.getNom()}">
+			</div> 
+			<div class = 'descrInfo'> 
+				<marquee direction='left' th:text="${product.getDescription()}">  </marquee>
+			</div>
+			<div class = 'DeleteProd'>
+					<div th:text="${product.getPrix_unit_kg()+' dhs/KG'}" th:remove="tag"></div>
+			</div>
+			</div>
+		</div>
+		</span>
+	</div>
+</th:block>
